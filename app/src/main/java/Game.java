@@ -1,28 +1,15 @@
-
 /**
  *
  */
 public class Game {
-    private String Pseudo;
-    private int[] HighScore;
+    public Game() {
+    }
 
-    public Game(int[] HighScore) {
+    public void StartGame() {
 
     }
 
-    public String getPseudo() {
-        return Pseudo;
-    }
+    public void EndGame() {
 
-    public void setPseudo(String pseudo) {
-        Pseudo = pseudo;
-    }
-
-    public int[] getHighScore() {
-        return HighScore;
-    }
-
-    public void setHighScore(int[] highScore) {
-        HighScore = highScore;
     }
 }
