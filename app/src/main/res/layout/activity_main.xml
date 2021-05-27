@@ -17,14 +17,14 @@
         android:gravity="center|top">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/title"
             android:layout_width="115dp"
             android:layout_height="115dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="#ECCB60"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="2048"
+            android:text="@string/title"
             android:textColor="#FBF5F0"
             android:textSize="34sp" />
 
@@ -34,33 +34,35 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/score"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:backgroundTint="#3D3A33"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Best\n0"
+                android:text="@string/score"
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonNewGame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="#3D3A33"
+                android:background="#000000"
                 android:backgroundTint="#F75E3E"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Undo"
+                android:stateListAnimator="@null"
+                android:text="@string/restart"
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -69,36 +71,35 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/highscore"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:backgroundTint="#3D3A33"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Score\n0"
+                android:text="@string/highscore"
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/button"
+            <TextView
+                android:id="@+id/pseudo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="#000000"
+                android:background="#3D3A33"
                 android:backgroundTint="#F75E3E"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:stateListAnimator="@null"
-                android:text="New"
+                android:text="@string/pseudo"
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
-
         </LinearLayout>
+
     </LinearLayout>
 
     <androidx.gridlayout.widget.GridLayout

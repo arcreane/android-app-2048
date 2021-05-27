@@ -7,11 +7,8 @@ public class User {
     private String Pseudo;
     private int[] HighScore;
 
-    /**
-     * @param HighScore ranking the best score of the user
-     */
-    public User(int[] HighScore) {
-
+    public User() {
+        this.setPseudo("zerckelxTitancartable");
     }
 
     public void DisplayHighScore() {
