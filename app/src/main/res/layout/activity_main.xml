@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
+    tools:context="a2048.MainActivity"
     android:layout_marginTop="5dp"
     android:background="#FCF9F1"
     android:gravity="center">
