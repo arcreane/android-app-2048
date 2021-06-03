@@ -8,7 +8,7 @@ public class User {
     private int[] HighScore;
 
     public User() {
-        this.setPseudo("zerckelxTitancartable");
+        this.setPseudo("");
     }
 
     public void DisplayHighScore() {
