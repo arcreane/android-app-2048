@@ -1,10 +1,6 @@
 package a2048;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.widget.Toast;
-import com.example.a2048.R;
-import a2048.tools.OnSwipeTouchListener;
 
 /**
  *
