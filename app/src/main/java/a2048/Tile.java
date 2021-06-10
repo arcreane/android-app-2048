@@ -17,11 +17,8 @@ public class Tile {
     }
 
     public void updateTileUi(MainActivity context) {
-        this.tile.setBackgroundColor();
+       //this.tile.setBackgroundColor();
         this.tile.setText(this.value);
     }
 
-    public void updateColorBackground() {
-
-    }
 }
