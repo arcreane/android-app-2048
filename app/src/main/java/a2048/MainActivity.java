@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +27,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //this.initUser();
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        this.initUser();
+        System.out.println("elem");
+        new Game(this);
+    }
+
+    private void initUser() {
+        User user = new User();
+        TextView button2 = findViewById(R.id.pseudo);
+        button2.setText(user.getPseudo());
     }
 
     @Override

@@ -1,24 +1,32 @@
 package a2048;
 
-import android.app.Activity;
+import android.view.View;
+
+import com.example.a2048.R;
 
 /**
  *
  */
-public class Grid extends Activity {
+public class Grid {
     private int Score;
 
-    public MainActivity context;
+    public Tile[] tiles;
+    public View grid;
     public final int UP = 0;
     public final int END = 1;
     public final int DOWN = 2;
     public final int START = 3;
 
-    public void NewGrid() {
-
+    public void NewGrid(MainActivity context) {
+        tiles = new Tile[16];
+        for (int i = 0; i < tiles.length; i++) {
+            tiles[i] = new Tile(0, "textView" + i, context);
+        }
     }
 
-    public void Swipe() {
+    public Grid(MainActivity context){
+        grid = context.findViewById(R.id.grid);
+        NewGrid(context);
     }
 
     public void UpdateGrid() {
