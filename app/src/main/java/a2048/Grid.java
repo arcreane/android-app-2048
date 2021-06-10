@@ -5,6 +5,7 @@ import android.view.View;
 import com.example.a2048.R;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -23,18 +24,23 @@ public class Grid {
 
         tiles = new Tile[4][4];
         int cpt = 1;
-
         for (int i = 1; i <= tiles.length; i++) {
             for (int y = 1; y <= tiles[i - 1].length; y++) {
                 tiles[i - 1][y - 1] = new Tile(0, "textView" + cpt, context);
                 cpt++;
             }
         }
+        tiles[this.GetRandomNbr(0, 3)][this.GetRandomNbr(0, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,3)));
+        tiles[this.GetRandomNbr(0, 3)][this.GetRandomNbr(0, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,3)));
     }
 
     public Grid(MainActivity context) {
         grid = context.findViewById(R.id.grid);
         NewGrid(context);
+    }
+
+    public int GetRandomNbr(int min, int max ){
+       return new Random().nextInt((max - min) + 1) + min;
     }
 
     public void UpdateGrid() {
