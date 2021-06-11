@@ -36,8 +36,46 @@ public class Tile {
         this.tile.setText(Integer.toString(this.value));
     }
 
-    public void changeValue(int value){
+    public void setValue(int value) {
         this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public TextView getTile() {
+        return tile;
+    }
+
+    public void setTile(TextView tile) {
+        this.tile = tile;
+
+        this.updateTileUi();
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void changeValue(int value){
+        this.value += value;
+        this.updateTileUi();
+    }
+    public void resetValue(){
+        this.setValue(0);
         this.updateTileUi();
     }
 

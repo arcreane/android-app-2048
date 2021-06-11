@@ -24,11 +24,11 @@ public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
             if (Math.abs(diffX) > SWIPE_THRESHOLD &&
                     Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffX > 0) {
-                    Log.d(DEBUG_TAG, "onFling: right");
+                    //right
+                    callbackGame.swipe(SWIPE.RIGHT);
                 } else {
                     Log.d(DEBUG_TAG, "onFling: left");
-                    callbackGame.swipeRight();
-
+                    callbackGame.swipe(SWIPE.LEFT);
                 }
             }
         } else {
@@ -36,8 +36,10 @@ public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
                     Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffY > 0) {
                     Log.d(DEBUG_TAG, "onFling: down");
+                    callbackGame.swipe(SWIPE.DOWN);
                 } else {
                     Log.d(DEBUG_TAG, "onFling: up");
+                    callbackGame.swipe(SWIPE.UP);
                 }
             }
         }

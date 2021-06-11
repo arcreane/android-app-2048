@@ -4,8 +4,9 @@ import android.view.View;
 
 import com.example.a2048.R;
 
-import java.util.Arrays;
 import java.util.Random;
+
+import a2048.tools.SWIPE;
 
 /**
  *
@@ -72,4 +73,55 @@ public class Grid {
         System.out.println(direction);
 
     }
+
+    public void checkCase(int x, int y, SWIPE swipe) {
+
+        if (swipe.getDirection().equals("right") || swipe.getDirection().equals("left")) {
+            if (y + swipe.getValue() != this.tiles[x].length && y + swipe.getValue() >= 0) {
+                if (this.checkActionRightLeft(x, y, swipe.getValue())) {
+                    this.checkCase(x, y + swipe.getValue(), swipe);
+                }
+            }
+        } else {
+            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0){
+                System.out.println("y = " + y + " x = " + x + " swipe = "+swipe.getValue());
+                if (this.checkActionUpDown(x, y, swipe.getValue())) {
+                    this.checkCase(x + swipe.getValue(), y, swipe);
+                }
+            }
+
+        }
+
+    }
+
+    private boolean checkActionRightLeft(int x, int y, int direction) {
+        System.out.println("right left " + (y + direction) + " " + this.tiles[x][y + direction].getValue());
+        if (this.tiles[x][y + direction].getValue() == 0 || this.tiles[x][y + direction].getValue() == this.tiles[x][y].getValue()) {
+            System.out.println("je passe");
+            return this.changeValueRightLeft(x, y, direction);
+        }
+        return false;
+    }
+
+    private boolean checkActionUpDown(int x, int y, int direction) {
+        System.out.println("up  down " + (x + direction));
+        if (this.tiles[x + direction][y].getValue() == 0 || this.tiles[x + direction][y].getValue() == this.tiles[x][y].getValue()) {
+            return this.changeValueUpDown(x, y, direction);
+        }
+        return false;
+    }
+
+
+    private boolean changeValueRightLeft(int x, int y, int direction) {
+        this.tiles[x][y + direction].changeValue(this.tiles[x][y].getValue());
+        this.tiles[x][y].resetValue();
+        return true;
+    }
+
+    private boolean changeValueUpDown(int x, int y, int direction) {
+        this.tiles[x + direction][y].changeValue(this.tiles[x][y].getValue());
+        this.tiles[x][y].resetValue();
+        return true;
+    }
 }
+
