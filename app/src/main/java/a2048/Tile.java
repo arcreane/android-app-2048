@@ -37,7 +37,6 @@ public class Tile {
     }
 
     public void changeValue(int value){
-
         this.value = value;
         this.updateTileUi();
     }

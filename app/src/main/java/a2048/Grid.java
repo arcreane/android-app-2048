@@ -30,8 +30,8 @@ public class Grid {
                 cpt++;
             }
         }
-        tiles[this.GetRandomNbr(0,  1)][this.GetRandomNbr(0, 1)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,2)));
-        tiles[this.GetRandomNbr(2, 3)][this.GetRandomNbr(2, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,2)));
+        tiles[this.GetRandomNbr(0, 1)][this.GetRandomNbr(0, 1)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
+        tiles[this.GetRandomNbr(2, 3)][this.GetRandomNbr(2, 3)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
     }
 
     public Grid(MainActivity context) {
@@ -39,8 +39,8 @@ public class Grid {
         NewGrid(context);
     }
 
-    public int GetRandomNbr(int min, int max ){
-       return new Random().nextInt((max - min) + 1) + min;
+    public int GetRandomNbr(int min, int max) {
+        return new Random().nextInt((max - min) + 1) + min;
     }
 
     public void UpdateGrid() {
@@ -49,21 +49,22 @@ public class Grid {
     public void UpdateScore() {
     }
 
-    public void SendScore() {
+    public void SendScore(int value) {
+        this.setScore(value);
     }
 
     /**
      * @return Score
      */
     public int getScore() {
-        return Score;
+        return this.Score;
     }
 
     /**
      * @param score set Score of the game
      */
     public void setScore(int score) {
-        Score = score;
+        this.Score = score;
     }
 
     public void modifyGrid(int direction) {
