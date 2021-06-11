@@ -30,8 +30,8 @@ public class Grid {
                 cpt++;
             }
         }
-        tiles[this.GetRandomNbr(0, 3)][this.GetRandomNbr(0, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,3)));
-        tiles[this.GetRandomNbr(0, 3)][this.GetRandomNbr(0, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,3)));
+        tiles[this.GetRandomNbr(0,  1)][this.GetRandomNbr(0, 1)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,2)));
+        tiles[this.GetRandomNbr(2, 3)][this.GetRandomNbr(2, 3)].changeValue((int) Math.pow(2,this.GetRandomNbr(1,2)));
     }
 
     public Grid(MainActivity context) {
@@ -69,5 +69,6 @@ public class Grid {
     public void modifyGrid(int direction) {
         System.out.println("swipe detected");
         System.out.println(direction);
+
     }
 }

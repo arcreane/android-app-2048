@@ -27,10 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener(new Game(this)));
         this.initUser();
         System.out.println("elem");
-        new Game(this);
     }
 
     private void initUser() {
