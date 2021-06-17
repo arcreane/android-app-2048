@@ -2,6 +2,7 @@ package a2048;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +17,31 @@ import a2048.tools.MyGestureListener;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String DEBUG_TAG = "Gestures";
-    private GestureDetectorCompat mDetector;
+    private GestureDetectorCompat MDetector;
+    private Game game;
 
+    public GestureDetectorCompat getMDetector() {
+        return MDetector;
+    }
+
+    public void setMDetector(GestureDetectorCompat MDetector) {
+        this.MDetector = MDetector;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener(new Game(this, this.initUser())));
+        this.setGame(new Game(this, this.initUser()));
+        MDetector = new GestureDetectorCompat(this, new MyGestureListener(this.getGame()));
     }
 
     private User initUser() {
@@ -34,9 +51,17 @@ public class MainActivity extends AppCompatActivity {
         return user;
     }
 
+    public void resetGame(View button) {
+        this.getGame().EndGame();
+    }
+
+    public void showHighScore(View TextView) {
+        HighScoreDialogFragment HighScoreModal = new HighScoreDialogFragment();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.mDetector.onTouchEvent(event);
+        this.getMDetector().onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
