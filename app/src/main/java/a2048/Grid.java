@@ -90,8 +90,6 @@ public class Grid implements Subject{
         this.tiles[x][y + direction].changeValue(this.tiles[x][y].getValue());
         this.tiles[x][y].resetValue();
         if (fusion) {
-            System.out.println("c moa");
-            System.out.println(this.tiles[x][y + direction].getValue());
             this.notifyObserver(this.tiles[x][y + direction].getValue());
         }
         return true;
@@ -102,8 +100,6 @@ public class Grid implements Subject{
         this.tiles[x + direction][y].changeValue(this.tiles[x][y].getValue());
         this.tiles[x][y].resetValue();
         if (fusion) {
-            System.out.println("c moa");
-            System.out.println(this.tiles[x + direction][y].getValue());
             this.notifyObserver(this.tiles[x + direction][y].getValue());
         }
         return true;

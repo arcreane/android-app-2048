@@ -67,11 +67,11 @@ public class Game implements ScoreObserver{
 
     public void UpdateScore(int score) {
         this.setScore(this.getScore() + score);
-        this.SendScore(this.getScore());
     }
 
     public void SendScore(int score) {
         this.getUser().setNewScore(score);
+        this.setScore(0);
     }
 
     /**
