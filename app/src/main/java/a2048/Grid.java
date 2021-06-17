@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.example.a2048.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import a2048.tools.SWIPE;
@@ -11,15 +12,20 @@ import a2048.tools.SWIPE;
 /**
  *
  */
-public class Grid {
+public class Grid implements Subject{
 
     public Tile[][] tiles;
     public View grid;
-    public final int UP = 0;
-    public final int END = 1;
-    public final int DOWN = 2;
-    public final int START = 3;
 
+    public ArrayList<ScoreObserver> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(ArrayList<ScoreObserver> observers) {
+        this.observers = observers;
+    }
+
+    private ArrayList<ScoreObserver> observers;
     public void NewGrid(MainActivity context) {
 
         tiles = new Tile[4][4];
@@ -35,21 +41,13 @@ public class Grid {
     }
 
     public Grid(MainActivity context) {
+        this.observers = new ArrayList<>();
         grid = context.findViewById(R.id.grid);
         NewGrid(context);
     }
 
     public int GetRandomNbr(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
-    }
-
-    public void UpdateGrid() {
-    }
-
-    public void modifyGrid(int direction) {
-        System.out.println("swipe detected");
-        System.out.println(direction);
-
     }
 
     public void checkCase(int x, int y, SWIPE swipe) {
@@ -62,7 +60,6 @@ public class Grid {
             }
         } else {
             if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0){
-                System.out.println("y = " + y + " x = " + x + " swipe = "+swipe.getValue());
                 if (this.checkActionUpDown(x, y, swipe.getValue())) {
                     this.checkCase(x + swipe.getValue(), y, swipe);
                 }
@@ -73,16 +70,13 @@ public class Grid {
     }
 
     private boolean checkActionRightLeft(int x, int y, int direction) {
-        System.out.println("right left " + (y + direction) + " " + this.tiles[x][y + direction].getValue());
         if (this.tiles[x][y + direction].getValue() == 0 || this.tiles[x][y + direction].getValue() == this.tiles[x][y].getValue()) {
-            System.out.println("je passe");
             return this.changeValueRightLeft(x, y, direction);
         }
         return false;
     }
 
     private boolean checkActionUpDown(int x, int y, int direction) {
-        System.out.println("up  down " + (x + direction));
         if (this.tiles[x + direction][y].getValue() == 0 || this.tiles[x + direction][y].getValue() == this.tiles[x][y].getValue()) {
             return this.changeValueUpDown(x, y, direction);
         }
@@ -91,15 +85,40 @@ public class Grid {
 
 
     private boolean changeValueRightLeft(int x, int y, int direction) {
+        boolean fusion = this.tiles[x][y + direction].getValue() != 0;
+
         this.tiles[x][y + direction].changeValue(this.tiles[x][y].getValue());
         this.tiles[x][y].resetValue();
+        if (fusion) {
+            System.out.println("c moa");
+            System.out.println(this.tiles[x][y + direction].getValue());
+            this.notifyObserver(this.tiles[x][y + direction].getValue());
+        }
         return true;
     }
 
     private boolean changeValueUpDown(int x, int y, int direction) {
+        boolean fusion = this.tiles[x + direction][y].getValue() != 0;
         this.tiles[x + direction][y].changeValue(this.tiles[x][y].getValue());
         this.tiles[x][y].resetValue();
+        if (fusion) {
+            System.out.println("c moa");
+            System.out.println(this.tiles[x + direction][y].getValue());
+            this.notifyObserver(this.tiles[x + direction][y].getValue());
+        }
         return true;
+    }
+
+    @Override
+    public void registerObserver(ScoreObserver scoreObserver) {
+        this.getObservers().add(scoreObserver);
+    }
+
+    @Override
+    public void notifyObserver(int newScore) {
+        for (ScoreObserver observer: observers) {
+            observer.onCaseFusion(newScore);
+        }
     }
 }
 

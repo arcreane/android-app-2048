@@ -39,7 +39,6 @@ public class User {
                 }
             }
         }
-
         this.setHighScore(arrayScore);
     }
 
@@ -92,7 +91,6 @@ public class User {
         for (int i = 0; i < length; i++) {
             arrayScore[i] = this.getHighScore()[i];
         }
-
         this.OrderHighScore(arrayScore);
     }
 }
