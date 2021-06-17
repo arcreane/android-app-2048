@@ -74,6 +74,7 @@ public class Tile {
         this.value += value;
         this.updateTileUi();
     }
+
     public void resetValue(){
         this.setValue(0);
         this.updateTileUi();

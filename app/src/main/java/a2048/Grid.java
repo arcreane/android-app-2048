@@ -31,8 +31,8 @@ public class Grid {
                 cpt++;
             }
         }
-        tiles[this.GetRandomNbr(0, 1)][this.GetRandomNbr(0, 1)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
-        tiles[this.GetRandomNbr(2, 3)][this.GetRandomNbr(2, 3)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
+        this.createRandomTile();
+        this.createRandomTile();
     }
 
     public Grid(MainActivity context) {
@@ -83,8 +83,8 @@ public class Grid {
                 }
             }
         } else {
-            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0){
-                System.out.println("y = " + y + " x = " + x + " swipe = "+swipe.getValue());
+            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0) {
+                System.out.println("y = " + y + " x = " + x + " swipe = " + swipe.getValue());
                 if (this.checkActionUpDown(x, y, swipe.getValue())) {
                     this.checkCase(x + swipe.getValue(), y, swipe);
                 }
@@ -122,6 +122,18 @@ public class Grid {
         this.tiles[x + direction][y].changeValue(this.tiles[x][y].getValue());
         this.tiles[x][y].resetValue();
         return true;
+    }
+
+    public void createRandomTile() {
+        int value = 0;
+        int x = 0;
+        int y = 0;
+        do {
+            x = this.GetRandomNbr(0, 3);
+            y = this.GetRandomNbr(0, 3);
+            value = tiles[x][y].getValue();
+        } while (value != 0);
+        tiles[x][y].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
     }
 }
 

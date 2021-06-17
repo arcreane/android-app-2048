@@ -34,6 +34,7 @@ public class Game {
                 }
             }
         }
+        this.grid.createRandomTile();
     }
 
     public void EndGame() {
