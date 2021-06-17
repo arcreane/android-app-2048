@@ -11,7 +11,6 @@ import java.util.Random;
  *
  */
 public class Grid {
-    private int Score;
 
     public Tile[][] tiles;
     public View grid;
@@ -44,27 +43,6 @@ public class Grid {
     }
 
     public void UpdateGrid() {
-    }
-
-    public void UpdateScore() {
-    }
-
-    public void SendScore(int value) {
-        this.setScore(value);
-    }
-
-    /**
-     * @return Score
-     */
-    public int getScore() {
-        return this.Score;
-    }
-
-    /**
-     * @param score set Score of the game
-     */
-    public void setScore(int score) {
-        this.Score = score;
     }
 
     public void modifyGrid(int direction) {

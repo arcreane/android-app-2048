@@ -2,7 +2,6 @@ package a2048;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.widget.TextView;
 
 enum Range {
@@ -16,10 +15,10 @@ enum Range {
 }
 
 public class Tile {
-    public int value;
     public String id;
     public TextView tile;
     public String color;
+    private int value;
 
     public Tile(int value, String id, MainActivity context) {
         super();
@@ -30,14 +29,46 @@ public class Tile {
         this.updateTileUi();
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public TextView getTile() {
+        return tile;
+    }
+
+    public void setTile(TextView tile) {
+        this.tile = tile;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @SuppressLint("SetTextI18n")
     public void updateTileUi() {
         //this.tile.setBackgroundColor(this.updateColorBackground());
         this.tile.setText(Integer.toString(this.value));
     }
 
-    public void changeValue(int value){
-        this.value = value;
+    public void changeValue(int value) {
+        this.value += value;
         this.updateTileUi();
     }
 

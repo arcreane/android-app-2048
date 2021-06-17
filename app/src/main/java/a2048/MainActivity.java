@@ -1,11 +1,8 @@
 package a2048;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.TextView;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
@@ -27,15 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener(new Game(this)));
-        this.initUser();
-        System.out.println("elem");
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener(new Game(this, this.initUser())));
     }
 
-    private void initUser() {
-        User user = new User();
-        TextView button2 = findViewById(R.id.pseudo);
-        button2.setText(user.getPseudo());
+    private User initUser() {
+        User user = new User("DomLeBoss");
+        TextView PseudoTextView = findViewById(R.id.pseudo);
+        PseudoTextView.setText(user.getPseudo());
+        return user;
     }
 
     @Override
