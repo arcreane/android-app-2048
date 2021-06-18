@@ -14,9 +14,17 @@ import a2048.tools.SWIPE;
 
 
 public class Game implements ScoreObserver {
+    public Grid grid;
     private User user;
     private int Score;
     private MainActivity context;
+
+    public Game(MainActivity context, User user) {
+        this.setContext(context);
+        this.setScore(0);
+        this.setUser(user);
+        StartGame(context);
+    }
 
     public MainActivity getContext() {
         return context;
@@ -24,16 +32,6 @@ public class Game implements ScoreObserver {
 
     public void setContext(MainActivity context) {
         this.context = context;
-    }
-
-
-    public Grid grid;
-
-    public Game(MainActivity context, User user) {
-        this.setContext(context);
-        this.setScore(0);
-        this.setUser(user);
-        StartGame(context);
     }
 
     public void StartGame(MainActivity context) {
@@ -66,6 +64,10 @@ public class Game implements ScoreObserver {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void UpdateScore(int score) {
         this.setScore(this.getScore() + score);
     }
@@ -90,10 +92,6 @@ public class Game implements ScoreObserver {
         textScore.setText(MessageFormat.format("Score: {0}", score));
         this.Score = score;
 
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

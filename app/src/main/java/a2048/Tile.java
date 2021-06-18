@@ -6,10 +6,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.widget.TextView;
 
-import com.example.a2048.R;
-
-import static android.graphics.Color.WHITE;
-
 enum Range {
     MIN("C0B0A1"),
     MAX("e92406");
@@ -38,22 +34,18 @@ public class Tile {
 
     @SuppressLint("SetTextI18n")
     public void updateTileUi() {
-           // this.tile.setBackgroundColor(this.updateColorBackground());
+        // this.tile.setBackgroundColor(this.updateColorBackground());
         if (this.value == 0) {
             this.tile.setText("");
-             this.tile.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
+            this.tile.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
         } else {
             String s = String.valueOf(this.value);
             this.tile.setText(Integer.toString(this.value));
             float factor = Float.parseFloat("0." + s + "f");
             System.out.println("COlLOR = " + factor);
             //this.tile.getBackgroundTintList().
-            this.tile.setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.tile.getBackgroundTintList().getDefaultColor(), factor )));
+            this.tile.setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.tile.getBackgroundTintList().getDefaultColor(), factor)));
         }
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public String getId() {
@@ -84,6 +76,10 @@ public class Tile {
 
     public int getValue() {
         return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public void changeValue(int value) {
