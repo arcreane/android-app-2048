@@ -12,10 +12,17 @@ import a2048.tools.SWIPE;
 /**
  *
  */
-public class Grid implements Subject{
+public class Grid implements Subject {
 
     public Tile[][] tiles;
     public View grid;
+    private ArrayList<ScoreObserver> observers;
+
+    public Grid(MainActivity context) {
+        this.observers = new ArrayList<>();
+        grid = context.findViewById(R.id.grid);
+        NewGrid(context);
+    }
 
     public ArrayList<ScoreObserver> getObservers() {
         return observers;
@@ -25,7 +32,6 @@ public class Grid implements Subject{
         this.observers = observers;
     }
 
-    private ArrayList<ScoreObserver> observers;
     public void NewGrid(MainActivity context) {
 
         tiles = new Tile[4][4];
@@ -38,12 +44,6 @@ public class Grid implements Subject{
         }
         this.createRandomTile();
         this.createRandomTile();
-    }
-
-    public Grid(MainActivity context) {
-        this.observers = new ArrayList<>();
-        grid = context.findViewById(R.id.grid);
-        NewGrid(context);
     }
 
     public int GetRandomNbr(int min, int max) {
@@ -59,7 +59,7 @@ public class Grid implements Subject{
                 }
             }
         } else {
-            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0){
+            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0) {
                 if (this.checkActionUpDown(x, y, swipe.getValue())) {
                     this.checkCase(x + swipe.getValue(), y, swipe);
                 }
@@ -106,9 +106,9 @@ public class Grid implements Subject{
     }
 
     public void createRandomTile() {
-        int value = 0;
-        int x = 0;
-        int y = 0;
+        int value;
+        int x;
+        int y;
         do {
             x = this.GetRandomNbr(0, 3);
             y = this.GetRandomNbr(0, 3);
@@ -124,7 +124,7 @@ public class Grid implements Subject{
 
     @Override
     public void notifyObserver(int newScore) {
-        for (ScoreObserver observer: observers) {
+        for (ScoreObserver observer : observers) {
             observer.onCaseFusion(newScore);
         }
     }

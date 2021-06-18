@@ -13,7 +13,7 @@ import a2048.tools.SWIPE;
  */
 
 
-public class Game implements ScoreObserver{
+public class Game implements ScoreObserver {
     private User user;
     private int Score;
     private MainActivity context;
@@ -44,7 +44,7 @@ public class Game implements ScoreObserver{
     public void swipe(SWIPE swipe) {
         if (swipe.getDirection().equals("right") || swipe.getDirection().equals("down")) {
             for (int i = this.grid.tiles.length - 1; i >= 0; i--) {
-                for (int y = this.grid.tiles[i].length -1; y >= 0; y--) {
+                for (int y = this.grid.tiles[i].length - 1; y >= 0; y--) {
                     this.grid.checkCase(i, y, swipe);
                 }
             }

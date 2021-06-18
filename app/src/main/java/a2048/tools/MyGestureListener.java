@@ -10,7 +10,7 @@ public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
     private static final String DEBUG_TAG = "Gestures";
     private static final int SWIPE_THRESHOLD = 5;
     private static final int SWIPE_VELOCITY_THRESHOLD = 5;
-    private Game callbackGame;
+    private final Game callbackGame;
 
     public MyGestureListener(Game callbackGame) {
         this.callbackGame = callbackGame;

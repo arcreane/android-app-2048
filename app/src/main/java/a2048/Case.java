@@ -10,8 +10,8 @@ public class Case {
 
     /**
      * @param value Value of the case
-     * @param posX Localisation of the case in X axis
-     * @param posY Localisation of the case in Y axis
+     * @param posX  Localisation of the case in X axis
+     * @param posY  Localisation of the case in Y axis
      */
     public Case(int value, int posX, int posY) {
         Value = value;

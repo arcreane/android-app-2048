@@ -2,7 +2,6 @@ package a2048;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.widget.TextView;
 
 enum Range {
@@ -73,7 +72,7 @@ public class Tile {
         this.updateTileUi();
     }
 
-    public void resetValue(){
+    public void resetValue() {
         this.setValue(0);
         this.updateTileUi();
     }
