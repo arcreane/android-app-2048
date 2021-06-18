@@ -1,12 +1,10 @@
-# 2048 lite speed
+# 2048 LITE SPEED
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
 Voici une version INCROYABLE du populaire jeu 2048 encore + LITE et + SPEED
 
 ## Pour commencer
-
-Entrez ici les instructions pour bien débuter avec votre projet...
 
 ### Pré-requis
 
