@@ -13,10 +13,18 @@ import a2048.tools.SWIPE;
  */
 
 
-public class Game implements ScoreObserver{
+public class Game implements ScoreObserver {
+    public Grid grid;
     private User user;
     private int Score;
     private MainActivity context;
+
+    public Game(MainActivity context, User user) {
+        this.setContext(context);
+        this.setScore(0);
+        this.setUser(user);
+        StartGame(context);
+    }
 
     public MainActivity getContext() {
         return context;
@@ -24,16 +32,6 @@ public class Game implements ScoreObserver{
 
     public void setContext(MainActivity context) {
         this.context = context;
-    }
-
-
-    public Grid grid;
-
-    public Game(MainActivity context, User user) {
-        this.setContext(context);
-        this.setScore(0);
-        this.setUser(user);
-        StartGame(context);
     }
 
     public void StartGame(MainActivity context) {
@@ -44,7 +42,7 @@ public class Game implements ScoreObserver{
     public void swipe(SWIPE swipe) {
         if (swipe.getDirection().equals("right") || swipe.getDirection().equals("down")) {
             for (int i = this.grid.tiles.length - 1; i >= 0; i--) {
-                for (int y = this.grid.tiles[i].length -1; y >= 0; y--) {
+                for (int y = this.grid.tiles[i].length - 1; y >= 0; y--) {
                     this.grid.checkCase(i, y, swipe);
                 }
             }
@@ -55,6 +53,7 @@ public class Game implements ScoreObserver{
                 }
             }
         }
+        this.grid.createRandomTile();
     }
 
     public void EndGame() {
@@ -63,6 +62,10 @@ public class Game implements ScoreObserver{
 
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void UpdateScore(int score) {
@@ -89,10 +92,6 @@ public class Game implements ScoreObserver{
         textScore.setText(MessageFormat.format("Score: {0}", score));
         this.Score = score;
 
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

@@ -12,10 +12,17 @@ import a2048.tools.SWIPE;
 /**
  *
  */
-public class Grid implements Subject{
+public class Grid implements Subject {
 
     public Tile[][] tiles;
     public View grid;
+    private ArrayList<ScoreObserver> observers;
+
+    public Grid(MainActivity context) {
+        this.observers = new ArrayList<>();
+        grid = context.findViewById(R.id.grid);
+        NewGrid(context);
+    }
 
     public ArrayList<ScoreObserver> getObservers() {
         return observers;
@@ -25,7 +32,6 @@ public class Grid implements Subject{
         this.observers = observers;
     }
 
-    private ArrayList<ScoreObserver> observers;
     public void NewGrid(MainActivity context) {
 
         tiles = new Tile[4][4];
@@ -36,14 +42,8 @@ public class Grid implements Subject{
                 cpt++;
             }
         }
-        tiles[this.GetRandomNbr(0, 1)][this.GetRandomNbr(0, 1)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
-        tiles[this.GetRandomNbr(2, 3)][this.GetRandomNbr(2, 3)].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
-    }
-
-    public Grid(MainActivity context) {
-        this.observers = new ArrayList<>();
-        grid = context.findViewById(R.id.grid);
-        NewGrid(context);
+        this.createRandomTile();
+        this.createRandomTile();
     }
 
     public int GetRandomNbr(int min, int max) {
@@ -59,7 +59,7 @@ public class Grid implements Subject{
                 }
             }
         } else {
-            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0){
+            if (x + swipe.getValue() != this.tiles.length && x + swipe.getValue() >= 0) {
                 if (this.checkActionUpDown(x, y, swipe.getValue())) {
                     this.checkCase(x + swipe.getValue(), y, swipe);
                 }
@@ -105,6 +105,18 @@ public class Grid implements Subject{
         return true;
     }
 
+    public void createRandomTile() {
+        int value;
+        int x;
+        int y;
+        do {
+            x = this.GetRandomNbr(0, 3);
+            y = this.GetRandomNbr(0, 3);
+            value = tiles[x][y].getValue();
+        } while (value != 0);
+        tiles[x][y].changeValue((int) Math.pow(2, this.GetRandomNbr(1, 2)));
+    }
+
     @Override
     public void registerObserver(ScoreObserver scoreObserver) {
         this.getObservers().add(scoreObserver);
@@ -112,7 +124,7 @@ public class Grid implements Subject{
 
     @Override
     public void notifyObserver(int newScore) {
-        for (ScoreObserver observer: observers) {
+        for (ScoreObserver observer : observers) {
             observer.onCaseFusion(newScore);
         }
     }

@@ -2,6 +2,7 @@ package a2048;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.widget.TextView;
 
@@ -28,14 +29,23 @@ public class Tile {
         int nbr = context.getResources().getIdentifier(this.id, "id", context.getPackageName());
         this.tile = context.findViewById(nbr);
         this.updateTileUi();
+
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
+    @SuppressLint("SetTextI18n")
+    public void updateTileUi() {
+        // this.tile.setBackgroundColor(this.updateColorBackground());
+        if (this.value == 0) {
+            this.tile.setText("");
+            this.tile.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
+        } else {
+            String s = String.valueOf(this.value);
+            this.tile.setText(Integer.toString(this.value));
+            float factor = Float.parseFloat("0." + s + "f");
+            System.out.println("COlLOR = " + factor);
+            //this.tile.getBackgroundTintList().
+            this.tile.setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.tile.getBackgroundTintList().getDefaultColor(), factor)));
+        }
     }
 
     public String getId() {
@@ -52,6 +62,8 @@ public class Tile {
 
     public void setTile(TextView tile) {
         this.tile = tile;
+
+        this.updateTileUi();
     }
 
     public String getColor() {
@@ -62,10 +74,12 @@ public class Tile {
         this.color = color;
     }
 
-    @SuppressLint("SetTextI18n")
-    public void updateTileUi() {
-        //this.tile.setBackgroundColor(this.updateColorBackground());
-        this.tile.setText(Integer.toString(this.value));
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public void changeValue(int value) {
@@ -73,7 +87,7 @@ public class Tile {
         this.updateTileUi();
     }
 
-    public void resetValue(){
+    public void resetValue() {
         this.setValue(0);
         this.updateTileUi();
     }
@@ -81,5 +95,22 @@ public class Tile {
     private int updateColorBackground() {
         return (Integer) new ArgbEvaluator().evaluate((float) 0.5, Range.MAX.value, Range.MIN.value);
     }
+
+    public int darkenColor(int color, float factor) {
+
+        int a = Color.alpha(color);
+        int r = Math.round(Color.red(color) * factor);
+        int g = Math.round(Color.green(color) * factor);
+        int b = Math.round(Color.blue(color) * factor);
+        System.out.println("COLOR = " + Color.argb(a,
+                Math.min(r, 255),
+                Math.min(g, 255),
+                Math.min(b, 255)));
+        return Color.argb(a,
+                Math.min(r, 255),
+                Math.min(g, 255),
+                Math.min(b, 255));
+    }
+
 
 }
