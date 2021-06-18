@@ -16,10 +16,10 @@ enum Range {
 }
 
 public class Tile {
-    public int value;
     public String id;
     public TextView tile;
     public String color;
+    private int value;
 
     public Tile(int value, String id, MainActivity context) {
         super();
@@ -30,10 +30,8 @@ public class Tile {
         this.updateTileUi();
     }
 
-    @SuppressLint("SetTextI18n")
-    public void updateTileUi() {
-        //this.tile.setBackgroundColor(this.updateColorBackground());
-        this.tile.setText(Integer.toString(this.value));
+    public int getValue() {
+        return value;
     }
 
     public void setValue(int value) {
@@ -54,8 +52,6 @@ public class Tile {
 
     public void setTile(TextView tile) {
         this.tile = tile;
-
-        this.updateTileUi();
     }
 
     public String getColor() {
@@ -66,11 +62,13 @@ public class Tile {
         this.color = color;
     }
 
-    public int getValue() {
-        return value;
+    @SuppressLint("SetTextI18n")
+    public void updateTileUi() {
+        //this.tile.setBackgroundColor(this.updateColorBackground());
+        this.tile.setText(Integer.toString(this.value));
     }
 
-    public void changeValue(int value){
+    public void changeValue(int value) {
         this.value += value;
         this.updateTileUi();
     }

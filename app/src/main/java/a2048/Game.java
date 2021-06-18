@@ -1,5 +1,11 @@
 package a2048;
 
+import android.widget.TextView;
+
+import com.example.a2048.R;
+
+import java.text.MessageFormat;
+
 import a2048.tools.SWIPE;
 
 /**
@@ -7,17 +13,32 @@ import a2048.tools.SWIPE;
  */
 
 
-public class Game {
+public class Game implements ScoreObserver{
+    private User user;
+    private int Score;
+    private MainActivity context;
 
-    public
-    Grid grid;
+    public MainActivity getContext() {
+        return context;
+    }
 
-    public Game(MainActivity context) {
+    public void setContext(MainActivity context) {
+        this.context = context;
+    }
+
+
+    public Grid grid;
+
+    public Game(MainActivity context, User user) {
+        this.setContext(context);
+        this.setScore(0);
+        this.setUser(user);
         StartGame(context);
     }
 
     public void StartGame(MainActivity context) {
         this.grid = new Grid(context);
+        this.grid.registerObserver(this);
     }
 
     public void swipe(SWIPE swipe) {
@@ -39,5 +60,44 @@ public class Game {
 
     public void EndGame() {
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void UpdateScore(int score) {
+        this.setScore(this.getScore() + score);
+    }
+
+    public void SendScore(int score) {
+        this.getUser().setNewScore(score);
+        this.setScore(0);
+    }
+
+    /**
+     * @return Score
+     */
+    public int getScore() {
+        return this.Score;
+    }
+
+    /**
+     * @param score set Score of the game
+     */
+    public void setScore(int score) {
+        TextView textScore = this.getContext().findViewById(R.id.score);
+        textScore.setText(MessageFormat.format("Score: {0}", score));
+        this.Score = score;
+
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public void onCaseFusion(int newScore) {
+        this.UpdateScore(newScore);
     }
 }
