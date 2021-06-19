@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GestureDetectorCompat MDetector;
     private Game game;
+    private User user;
 
     public GestureDetectorCompat getMDetector() {
         return MDetector;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         this.game = game;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getSupportActionBar().hide();
@@ -43,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.setGame(new Game(this, this.initUser()));
         MDetector = new GestureDetectorCompat(this, new MyGestureListener(this.getGame()));
+        this.setMDetector(MDetector);
     }
 
     private User initUser() {
         User user = new User("DomLeBoss");
+        this.setUser(user);
         TextView PseudoTextView = findViewById(R.id.pseudo);
         PseudoTextView.setText(user.getPseudo());
         return user;
@@ -57,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showHighScore(View TextView) {
-        HighScoreDialogFragment HighScoreModal = new HighScoreDialogFragment();
+        HighScoreDialogFragment HighScoreModal = new HighScoreDialogFragment(this.getUser().getHighScore());
+        HighScoreModal.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
@@ -65,6 +77,5 @@ public class MainActivity extends AppCompatActivity {
         this.getMDetector().onTouchEvent(event);
         return super.onTouchEvent(event);
     }
-
 
 }

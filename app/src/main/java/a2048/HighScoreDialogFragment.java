@@ -2,22 +2,43 @@ package a2048;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public class HighScoreDialogFragment extends DialogFragment {
+    private int[] highScore;
+
+    public HighScoreDialogFragment(int[] highScore) {
+        this.setHighScore(highScore);
+    }
+
+    public int[] getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int[] highScore) {
+        this.highScore = highScore;
+    }
+
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Here u can see ur highscore")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // FIRE ZE MISSILES!
-                    }
+        builder.setMessage(this.HighScoreTableBuilder().equals("") ? "No Score register yet :(" : this.HighScoreTableBuilder())
+                .setPositiveButton("Wow, this is incredible!", (dialog, id) -> {
                 });
-        // Create the AlertDialog object and return it
         return builder.create();
     }
+
+    private String HighScoreTableBuilder() {
+        StringBuilder HighScoreTable = new StringBuilder();
+        for (int i : this.getHighScore()) {
+            HighScoreTable.append(getHighScore()[i]);
+        }
+        return HighScoreTable.toString();
+    }
+
+
 }

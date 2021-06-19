@@ -6,5 +6,5 @@
     <string name="pseudo">pseudo</string>
     <string name="best_n0">Best\n0</string>
     <string name="title">2048</string>
-    <string name="highscore">best</string>
+    <string name="highscore">Best</string>
 </resources>
