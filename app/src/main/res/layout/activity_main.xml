@@ -59,6 +59,7 @@
                 android:background="#000000"
                 android:backgroundTint="#F75E3E"
                 android:insetTop="0dp"
+                android:onClick="resetGame"
                 android:insetBottom="0dp"
                 android:stateListAnimator="@null"
                 android:text="@string/restart"
@@ -83,6 +84,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="@string/highscore"
+                android:onClick="showHighScore"
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
 
