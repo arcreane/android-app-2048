@@ -24,30 +24,6 @@ public class Grid implements Subject {
         NewGrid(context);
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[][] tiles) {
-        this.tiles = tiles;
-    }
-
-    public View getGrid() {
-        return grid;
-    }
-
-    public void setGrid(View grid) {
-        this.grid = grid;
-    }
-
-    public ArrayList<ScoreObserver> getObservers() {
-        return observers;
-    }
-
-    public void setObservers(ArrayList<ScoreObserver> observers) {
-        this.observers = observers;
-    }
-
     public void NewGrid(MainActivity context) {
 
         setTiles(new Tile[4][4]);
@@ -98,7 +74,6 @@ public class Grid implements Subject {
         }
         return false;
     }
-
 
     private boolean changeValueRightLeft(int x, int y, int direction) {
         boolean fusion = this.getTiles()[x][y + direction].getValue() != 0;
@@ -155,6 +130,30 @@ public class Grid implements Subject {
         this.createRandomTile();
 
         return true;
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
+    public View getGrid() {
+        return grid;
+    }
+
+    public void setGrid(View grid) {
+        this.grid = grid;
+    }
+
+    public ArrayList<ScoreObserver> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(ArrayList<ScoreObserver> observers) {
+        this.observers = observers;
     }
 }
 

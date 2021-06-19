@@ -88,7 +88,7 @@
                 android:textColor="#FBF5F0"
                 android:textSize="20sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/pseudo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -101,7 +101,10 @@
                 android:gravity="center"
                 android:text="@string/pseudo"
                 android:textColor="#FBF5F0"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:inputType="text"
+                android:autofillHints=""
+                tools:ignore="LabelFor" />
         </LinearLayout>
 
     </LinearLayout>

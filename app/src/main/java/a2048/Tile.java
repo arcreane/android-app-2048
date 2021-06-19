@@ -48,6 +48,36 @@ public class Tile {
         }
     }
 
+    public void changeValue(int value) {
+        this.value += value;
+        this.updateTileUi();
+    }
+
+    public void resetValue() {
+        this.setValue(0);
+        this.updateTileUi();
+    }
+
+    private int updateColorBackground() {
+        return (Integer) new ArgbEvaluator().evaluate((float) 0.5, Range.MAX.value, Range.MIN.value);
+    }
+
+    public int darkenColor(int color, float factor) {
+
+        int a = Color.alpha(color);
+        int r = Math.round(Color.red(color) * factor);
+        int g = Math.round(Color.green(color) * factor);
+        int b = Math.round(Color.blue(color) * factor);
+        System.out.println("COLOR = " + Color.argb(a,
+                Math.min(r, 255),
+                Math.min(g, 255),
+                Math.min(b, 255)));
+        return Color.argb(a,
+                Math.min(r, 255),
+                Math.min(g, 255),
+                Math.min(b, 255));
+    }
+
     public String getId() {
         return id;
     }
@@ -80,36 +110,6 @@ public class Tile {
 
     public void setValue(int value) {
         this.value = value;
-    }
-
-    public void changeValue(int value) {
-        this.value += value;
-        this.updateTileUi();
-    }
-
-    public void resetValue() {
-        this.setValue(0);
-        this.updateTileUi();
-    }
-
-    private int updateColorBackground() {
-        return (Integer) new ArgbEvaluator().evaluate((float) 0.5, Range.MAX.value, Range.MIN.value);
-    }
-
-    public int darkenColor(int color, float factor) {
-
-        int a = Color.alpha(color);
-        int r = Math.round(Color.red(color) * factor);
-        int g = Math.round(Color.green(color) * factor);
-        int b = Math.round(Color.blue(color) * factor);
-        System.out.println("COLOR = " + Color.argb(a,
-                Math.min(r, 255),
-                Math.min(g, 255),
-                Math.min(b, 255)));
-        return Color.argb(a,
-                Math.min(r, 255),
-                Math.min(g, 255),
-                Math.min(b, 255));
     }
 
 

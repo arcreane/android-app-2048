@@ -1,26 +1,28 @@
 package a2048;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.EditText;
+
+import com.example.a2048.R;
+
 /**
  * The type User.
  */
 public class User {
     private String Pseudo;
     private int[] HighScore;
+    private MainActivity context;
 
-    /**
-     * Instantiates a new User.
-     *
-     * @param pseudo the pseudo
-     */
-    public User(String pseudo) {
-        this.setPseudo(pseudo);
+    public User(MainActivity context) {
         this.setHighScore(new int[0]);
+        this.setContext(context);
     }
 
-    /**
-     * Display high score.
-     */
-    public void DisplayHighScore() {
+    public void changePseudo(String pseudo) {
+        this.setPseudo(pseudo);
+        EditText PseudoTextView = this.getContext().findViewById(R.id.pseudo);
+        PseudoTextView.setText(this.getPseudo());
     }
 
     /**
@@ -43,6 +45,30 @@ public class User {
     }
 
     /**
+     * Sets new score.
+     *
+     * @param score the score
+     */
+    public void setNewScore(int score) {
+        int length = this.getHighScore().length;
+        int[] arrayScore = new int[length + 1];
+
+        arrayScore[length] = score;
+        for (int i = 0; i < length; i++) {
+            arrayScore[i] = this.getHighScore()[i];
+        }
+        this.OrderHighScore(arrayScore);
+    }
+
+    public MainActivity getContext() {
+        return context;
+    }
+
+    public void setContext(MainActivity context) {
+        this.context = context;
+    }
+
+    /**
      * Gets pseudo.
      *
      * @return String pseudo
@@ -58,6 +84,10 @@ public class User {
      */
     public void setPseudo(String pseudo) {
         Pseudo = pseudo;
+        SharedPreferences mPrefs = this.getContext().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString("Pseudo", pseudo);
+        prefsEditor.apply();
     }
 
     /**
@@ -76,21 +106,5 @@ public class User {
      */
     public void setHighScore(int[] highScore) {
         HighScore = highScore;
-    }
-
-    /**
-     * Sets new score.
-     *
-     * @param score the score
-     */
-    public void setNewScore(int score) {
-        int length = this.getHighScore().length;
-        int[] arrayScore = new int[length + 1];
-
-        arrayScore[length] = score;
-        for (int i = 0; i < length; i++) {
-            arrayScore[i] = this.getHighScore()[i];
-        }
-        this.OrderHighScore(arrayScore);
     }
 }

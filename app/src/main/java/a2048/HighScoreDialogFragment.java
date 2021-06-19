@@ -14,14 +14,6 @@ public class HighScoreDialogFragment extends DialogFragment {
         this.setHighScore(highScore);
     }
 
-    public int[] getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(int[] highScore) {
-        this.highScore = highScore;
-    }
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -38,6 +30,14 @@ public class HighScoreDialogFragment extends DialogFragment {
             HighScoreTable.append(getHighScore()[i]);
         }
         return HighScoreTable.toString();
+    }
+
+    public int[] getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int[] highScore) {
+        this.highScore = highScore;
     }
 
 

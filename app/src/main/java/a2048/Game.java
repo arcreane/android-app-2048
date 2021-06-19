@@ -1,6 +1,5 @@
 package a2048;
 
-import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,47 +25,6 @@ public class Game implements ScoreObserver {
         this.setScore(0);
         this.setUser(user);
         StartGame(context);
-    }
-
-    public Grid getGrid() {
-        return grid;
-    }
-
-    public void setGrid(Grid grid) {
-        this.grid = grid;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public MainActivity getContext() {
-        return context;
-    }
-
-    public void setContext(MainActivity context) {
-        this.context = context;
-    }
-
-    /**
-     * @return Score
-     */
-    public int getScore() {
-        return this.Score;
-    }
-
-    /**
-     * @param score set Score of the game
-     */
-    public void setScore(int score) {
-        TextView textScore = this.getContext().findViewById(R.id.score);
-        textScore.setText(MessageFormat.format("Score: {0}", score));
-        this.Score = score;
-
     }
 
     public void StartGame(MainActivity context) {
@@ -117,5 +75,46 @@ public class Game implements ScoreObserver {
     @Override
     public void onCaseFusion(int newScore) {
         this.UpdateScore(newScore);
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public MainActivity getContext() {
+        return context;
+    }
+
+    public void setContext(MainActivity context) {
+        this.context = context;
+    }
+
+    /**
+     * @return Score
+     */
+    public int getScore() {
+        return this.Score;
+    }
+
+    /**
+     * @param score set Score of the game
+     */
+    public void setScore(int score) {
+        TextView textScore = this.getContext().findViewById(R.id.score);
+        textScore.setText(MessageFormat.format("Score: {0}", score));
+        this.Score = score;
+
     }
 }
