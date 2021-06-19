@@ -1,6 +1,8 @@
 package a2048;
 
+import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a2048.R;
 
@@ -18,6 +20,7 @@ public class Game implements ScoreObserver {
     private User user;
     private int Score;
     private MainActivity context;
+
     public Game(MainActivity context, User user) {
         this.setContext(context);
         this.setScore(0);
@@ -90,9 +93,17 @@ public class Game implements ScoreObserver {
 
     public void EndGame() {
         this.SendScore(this.getScore());
-        this.getGrid().resetTable();
+        if (this.getGrid().resetTable()) {
+            this.sendToastMessage("Start new Game");
+        }
     }
 
+    public void sendToastMessage(String message) {
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(this.getContext(), message, duration);
+        toast.show();
+    }
 
     public void UpdateScore(int score) {
         this.setScore(this.getScore() + score);

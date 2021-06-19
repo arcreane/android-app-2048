@@ -145,7 +145,7 @@ public class Grid implements Subject {
         }
     }
 
-    public void resetTable() {
+    public boolean resetTable() {
         for (int i = 0; i < this.getTiles().length; i++) {
             for (int y = 0; y < this.getTiles()[i].length; y++) {
                 this.getTiles()[i][y].resetValue();
@@ -153,6 +153,8 @@ public class Grid implements Subject {
         }
         this.createRandomTile();
         this.createRandomTile();
+
+        return true;
     }
 }
 
