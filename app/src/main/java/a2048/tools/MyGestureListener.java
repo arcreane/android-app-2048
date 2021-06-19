@@ -6,12 +6,20 @@ import android.view.MotionEvent;
 
 import a2048.Game;
 
+/**
+ * The type My gesture listener.
+ */
 public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
     private static final String DEBUG_TAG = "Gestures";
     private static final int SWIPE_THRESHOLD = 5;
     private static final int SWIPE_VELOCITY_THRESHOLD = 5;
     private final Game callbackGame;
 
+    /**
+     * Instantiates a new My gesture listener.
+     *
+     * @param callbackGame the callback game
+     */
     public MyGestureListener(Game callbackGame) {
         this.callbackGame = callbackGame;
     }

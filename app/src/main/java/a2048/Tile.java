@@ -6,9 +6,21 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.widget.TextView;
 
+/**
+ * The enum Range.
+ */
 enum Range {
+    /**
+     * Min range.
+     */
     MIN("C0B0A1"),
+    /**
+     * Max range.
+     */
     MAX("e92406");
+    /**
+     * The Value.
+     */
     public final String value;
 
     Range(String value) {
@@ -16,43 +28,64 @@ enum Range {
     }
 }
 
+/**
+ * The type Tile.
+ */
 public class Tile {
-    public String id;
-    public TextView tile;
-    public String color;
+    private String id;
+    private TextView tile;
+    private String color;
     private int value;
 
+    /**
+     * Instantiates a new Tile.
+     *
+     * @param value   the value
+     * @param id      the id
+     * @param context the context
+     */
     public Tile(int value, String id, MainActivity context) {
         super();
-        this.value = value;
-        this.id = id;
-        int nbr = context.getResources().getIdentifier(this.id, "id", context.getPackageName());
-        this.tile = context.findViewById(nbr);
+        this.setValue(value);
+        this.setId(id);
+        int nbr = context.getResources().getIdentifier(id, "id", context.getPackageName());
+        this.setTile(context.findViewById(nbr));
         this.updateTileUi();
 
     }
 
+    /**
+     * Update tile ui.
+     */
     @SuppressLint("SetTextI18n")
     public void updateTileUi() {
         // this.tile.setBackgroundColor(this.updateColorBackground());
-        if (this.value == 0) {
-            this.tile.setText("");
-            this.tile.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
+        if (this.getValue() == 0) {
+            this.getTile().setText("");
+            this.getTile().setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
         } else {
-            String s = String.valueOf(this.value);
-            this.tile.setText(Integer.toString(this.value));
+            String s = String.valueOf(this.getValue());
+            this.getTile().setText(Integer.toString(this.getValue()));
             float factor = Float.parseFloat("0." + s + "f");
             System.out.println("COlLOR = " + factor);
             //this.tile.getBackgroundTintList().
-            this.tile.setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.tile.getBackgroundTintList().getDefaultColor(), factor)));
+            this.getTile().setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.getTile().getBackgroundTintList().getDefaultColor(), factor)));
         }
     }
 
+    /**
+     * Change value.
+     *
+     * @param value the value
+     */
     public void changeValue(int value) {
-        this.value += value;
+        this.setValue(this.getValue() + value);
         this.updateTileUi();
     }
 
+    /**
+     * Reset value.
+     */
     public void resetValue() {
         this.setValue(0);
         this.updateTileUi();
@@ -62,6 +95,13 @@ public class Tile {
         return (Integer) new ArgbEvaluator().evaluate((float) 0.5, Range.MAX.value, Range.MIN.value);
     }
 
+    /**
+     * Darken color int.
+     *
+     * @param color  the color
+     * @param factor the factor
+     * @return the int
+     */
     public int darkenColor(int color, float factor) {
 
         int a = Color.alpha(color);
@@ -78,36 +118,76 @@ public class Tile {
                 Math.min(b, 255));
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Gets tile.
+     *
+     * @return the tile
+     */
     public TextView getTile() {
         return tile;
     }
 
+    /**
+     * Sets tile.
+     *
+     * @param tile the tile
+     */
     public void setTile(TextView tile) {
         this.tile = tile;
 
         this.updateTileUi();
     }
 
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
     public String getColor() {
         return color;
     }
 
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
     public void setColor(String color) {
         this.color = color;
     }
 
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Sets value.
+     *
+     * @param value the value
+     */
     public void setValue(int value) {
         this.value = value;
     }

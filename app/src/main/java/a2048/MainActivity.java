@@ -18,7 +18,7 @@ import java.util.Objects;
 import a2048.tools.MyGestureListener;
 
 /**
- *
+ * The type Main activity.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -68,10 +68,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Reset game.
+     *
+     * @param button the button
+     */
     public void resetGame(View button) {
         this.getGame().EndGame();
     }
 
+    /**
+     * Show high score.
+     *
+     * @param TextView the text view
+     */
     public void showHighScore(View TextView) {
         HighScoreDialogFragment HighScoreModal = new HighScoreDialogFragment(this.getUser().getHighScore());
         HighScoreModal.show(getSupportFragmentManager(), "dialog");
@@ -83,26 +93,56 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
+    /**
+     * Gets m detector.
+     *
+     * @return the m detector
+     */
     protected GestureDetectorCompat getMDetector() {
         return MDetector;
     }
 
+    /**
+     * Sets m detector.
+     *
+     * @param MDetector the m detector
+     */
     protected void setMDetector(GestureDetectorCompat MDetector) {
         this.MDetector = MDetector;
     }
 
+    /**
+     * Gets game.
+     *
+     * @return the game
+     */
     protected Game getGame() {
         return game;
     }
 
+    /**
+     * Sets game.
+     *
+     * @param game the game
+     */
     protected void setGame(Game game) {
         this.game = game;
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     protected User getUser() {
         return user;
     }
 
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
     protected void setUser(User user) {
         this.user = user;
     }

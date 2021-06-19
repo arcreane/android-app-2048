@@ -10,7 +10,7 @@ import java.util.Random;
 import a2048.tools.SWIPE;
 
 /**
- *
+ * The type Grid.
  */
 public class Grid implements Subject {
 
@@ -18,12 +18,22 @@ public class Grid implements Subject {
     private View grid;
     private ArrayList<ScoreObserver> observers;
 
+    /**
+     * Instantiates a new Grid.
+     *
+     * @param context the context
+     */
     public Grid(MainActivity context) {
         this.observers = new ArrayList<>();
         grid = context.findViewById(R.id.grid);
         NewGrid(context);
     }
 
+    /**
+     * New grid.
+     *
+     * @param context the context
+     */
     public void NewGrid(MainActivity context) {
 
         setTiles(new Tile[4][4]);
@@ -38,10 +48,24 @@ public class Grid implements Subject {
         this.createRandomTile();
     }
 
+    /**
+     * Get random nbr int.
+     *
+     * @param min the min
+     * @param max the max
+     * @return the int
+     */
     public int GetRandomNbr(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
     }
 
+    /**
+     * Check case.
+     *
+     * @param x     the x
+     * @param y     the y
+     * @param swipe the swipe
+     */
     public void checkCase(int x, int y, SWIPE swipe) {
 
         if (swipe.getDirection().equals("right") || swipe.getDirection().equals("left")) {
@@ -96,6 +120,9 @@ public class Grid implements Subject {
         return true;
     }
 
+    /**
+     * Create random tile.
+     */
     public void createRandomTile() {
         int value;
         int x;
@@ -120,6 +147,11 @@ public class Grid implements Subject {
         }
     }
 
+    /**
+     * Reset table boolean.
+     *
+     * @return the boolean
+     */
     public boolean resetTable() {
         for (int i = 0; i < this.getTiles().length; i++) {
             for (int y = 0; y < this.getTiles()[i].length; y++) {
@@ -132,26 +164,56 @@ public class Grid implements Subject {
         return true;
     }
 
+    /**
+     * Get tiles tile [ ] [ ].
+     *
+     * @return the tile [ ] [ ]
+     */
     public Tile[][] getTiles() {
         return tiles;
     }
 
+    /**
+     * Sets tiles.
+     *
+     * @param tiles the tiles
+     */
     public void setTiles(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
+    /**
+     * Gets grid.
+     *
+     * @return the grid
+     */
     public View getGrid() {
         return grid;
     }
 
+    /**
+     * Sets grid.
+     *
+     * @param grid the grid
+     */
     public void setGrid(View grid) {
         this.grid = grid;
     }
 
+    /**
+     * Gets observers.
+     *
+     * @return the observers
+     */
     public ArrayList<ScoreObserver> getObservers() {
         return observers;
     }
 
+    /**
+     * Sets observers.
+     *
+     * @param observers the observers
+     */
     public void setObservers(ArrayList<ScoreObserver> observers) {
         this.observers = observers;
     }

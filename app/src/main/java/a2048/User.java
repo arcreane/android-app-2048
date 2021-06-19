@@ -14,11 +14,21 @@ public class User {
     private int[] HighScore;
     private MainActivity context;
 
+    /**
+     * Instantiates a new User.
+     *
+     * @param context the context
+     */
     public User(MainActivity context) {
         this.setHighScore(new int[0]);
         this.setContext(context);
     }
 
+    /**
+     * Change pseudo.
+     *
+     * @param pseudo the pseudo
+     */
     public void changePseudo(String pseudo) {
         this.setPseudo(pseudo);
         EditText PseudoTextView = this.getContext().findViewById(R.id.pseudo);
@@ -60,10 +70,20 @@ public class User {
         this.OrderHighScore(arrayScore);
     }
 
+    /**
+     * Gets context.
+     *
+     * @return the context
+     */
     public MainActivity getContext() {
         return context;
     }
 
+    /**
+     * Sets context.
+     *
+     * @param context the context
+     */
     public void setContext(MainActivity context) {
         this.context = context;
     }

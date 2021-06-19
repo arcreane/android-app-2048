@@ -7,9 +7,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+/**
+ * The type High score dialog fragment.
+ */
 public class HighScoreDialogFragment extends DialogFragment {
     private int[] highScore;
 
+    /**
+     * Instantiates a new High score dialog fragment.
+     *
+     * @param highScore the high score
+     */
     public HighScoreDialogFragment(int[] highScore) {
         this.setHighScore(highScore);
     }
@@ -33,10 +41,20 @@ public class HighScoreDialogFragment extends DialogFragment {
         return HighScoreTable.toString();
     }
 
+    /**
+     * Get high score int [ ].
+     *
+     * @return the int [ ]
+     */
     public int[] getHighScore() {
         return highScore;
     }
 
+    /**
+     * Sets high score.
+     *
+     * @param highScore the high score
+     */
     public void setHighScore(int[] highScore) {
         this.highScore = highScore;
     }
