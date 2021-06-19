@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void resetGame() {
+    public void resetGame(View button) {
         this.getGame().EndGame();
     }
 
-    protected void showHighScore() {
+    public void showHighScore(View TextView) {
         HighScoreDialogFragment HighScoreModal = new HighScoreDialogFragment(this.getUser().getHighScore());
         HighScoreModal.show(getSupportFragmentManager(), "dialog");
     }
