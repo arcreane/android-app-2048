@@ -14,11 +14,10 @@ import a2048.tools.SWIPE;
 
 
 public class Game implements ScoreObserver {
-    public Grid grid;
+    private Grid grid;
     private User user;
     private int Score;
     private MainActivity context;
-
     public Game(MainActivity context, User user) {
         this.setContext(context);
         this.setScore(0);
@@ -26,38 +25,12 @@ public class Game implements ScoreObserver {
         StartGame(context);
     }
 
-    public MainActivity getContext() {
-        return context;
+    public Grid getGrid() {
+        return grid;
     }
 
-    public void setContext(MainActivity context) {
-        this.context = context;
-    }
-
-    public void StartGame(MainActivity context) {
-        this.grid = new Grid(context);
-        this.grid.registerObserver(this);
-    }
-
-    public void swipe(SWIPE swipe) {
-        if (swipe.getDirection().equals("right") || swipe.getDirection().equals("down")) {
-            for (int i = this.grid.tiles.length - 1; i >= 0; i--) {
-                for (int y = this.grid.tiles[i].length - 1; y >= 0; y--) {
-                    this.grid.checkCase(i, y, swipe);
-                }
-            }
-        } else {
-            for (int i = 0; i < this.grid.tiles.length; i++) {
-                for (int y = 0; y < this.grid.tiles[i].length; y++) {
-                    this.grid.checkCase(i, y, swipe);
-                }
-            }
-        }
-        this.grid.createRandomTile();
-    }
-
-    public void EndGame() {
-
+    public void setGrid(Grid grid) {
+        this.grid = grid;
     }
 
     public User getUser() {
@@ -68,13 +41,12 @@ public class Game implements ScoreObserver {
         this.user = user;
     }
 
-    public void UpdateScore(int score) {
-        this.setScore(this.getScore() + score);
+    public MainActivity getContext() {
+        return context;
     }
 
-    public void SendScore(int score) {
-        this.getUser().setNewScore(score);
-        this.setScore(0);
+    public void setContext(MainActivity context) {
+        this.context = context;
     }
 
     /**
@@ -92,6 +64,43 @@ public class Game implements ScoreObserver {
         textScore.setText(MessageFormat.format("Score: {0}", score));
         this.Score = score;
 
+    }
+
+    public void StartGame(MainActivity context) {
+        this.setGrid(new Grid(context));
+        this.getGrid().registerObserver(this);
+    }
+
+    public void swipe(SWIPE swipe) {
+        if (swipe.getDirection().equals("right") || swipe.getDirection().equals("down")) {
+            for (int i = this.getGrid().getTiles().length - 1; i >= 0; i--) {
+                for (int y = this.getGrid().getTiles()[i].length - 1; y >= 0; y--) {
+                    this.getGrid().checkCase(i, y, swipe);
+                }
+            }
+        } else {
+            for (int i = 0; i < this.grid.getTiles().length; i++) {
+                for (int y = 0; y < this.grid.getTiles()[i].length; y++) {
+                    this.getGrid().checkCase(i, y, swipe);
+                }
+            }
+        }
+        this.getGrid().createRandomTile();
+    }
+
+    public void EndGame() {
+        this.SendScore(this.getScore());
+        this.getGrid().resetTable();
+    }
+
+
+    public void UpdateScore(int score) {
+        this.setScore(this.getScore() + score);
+    }
+
+    public void SendScore(int score) {
+        this.getUser().setNewScore(score);
+        this.setScore(0);
     }
 
     @Override
