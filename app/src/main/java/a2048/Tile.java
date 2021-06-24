@@ -90,10 +90,6 @@ public class Tile {
         this.updateTileUi();
     }
 
-    private int updateColorBackground() {
-        return (Integer) new ArgbEvaluator().evaluate((float) 0.5, Range.MAX.value, Range.MIN.value);
-    }
-
     /**
      * Darken color int.
      *
