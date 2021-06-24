@@ -1,41 +1,15 @@
 package a2048;
 
-import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.TextView;
-
-/**
- * The enum Range.
- */
-enum Range {
-    /**
-     * Min range.
-     */
-    MIN("C0B0A1"),
-    /**
-     * Max range.
-     */
-    MAX("e92406");
-    /**
-     * The Value.
-     */
-    public final String value;
-
-    Range(String value) {
-        this.value = value;
-    }
-}
 
 /**
  * The type Tile.
  */
 public class Tile {
-    private String id;
     private TextView tile;
-    private String color;
     private int value;
 
     /**
@@ -48,7 +22,6 @@ public class Tile {
     public Tile(int value, String id, MainActivity context) {
         super();
         this.setValue(value);
-        this.setId(id);
         int nbr = context.getResources().getIdentifier(id, "id", context.getPackageName());
         this.setTile(context.findViewById(nbr));
         this.updateTileUi();
@@ -110,24 +83,6 @@ public class Tile {
     }
 
     /**
-     * Gets id.
-     *
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets id.
-     *
-     * @param id the id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
      * Gets tile.
      *
      * @return the tile
@@ -145,24 +100,6 @@ public class Tile {
         this.tile = tile;
 
         this.updateTileUi();
-    }
-
-    /**
-     * Gets color.
-     *
-     * @return the color
-     */
-    public String getColor() {
-        return color;
-    }
-
-    /**
-     * Sets color.
-     *
-     * @param color the color
-     */
-    public void setColor(String color) {
-        this.color = color;
     }
 
     /**

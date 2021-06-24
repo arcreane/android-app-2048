@@ -1,12 +1,7 @@
 package a2048;
 
-import android.view.View;
-
-import com.example.a2048.R;
-
 import java.util.ArrayList;
 import java.util.Random;
-
 import a2048.tools.SWIPE;
 
 /**
@@ -15,8 +10,7 @@ import a2048.tools.SWIPE;
 public class Grid implements Subject {
 
     private Tile[][] tiles;
-    private View grid;
-    private ArrayList<ScoreObserver> observers;
+    private final ArrayList<ScoreObserver> observers;
 
     /**
      * Instantiates a new Grid.
@@ -25,7 +19,6 @@ public class Grid implements Subject {
      */
     public Grid(MainActivity context) {
         this.observers = new ArrayList<>();
-        grid = context.findViewById(R.id.grid);
         NewGrid(context);
     }
 
@@ -183,39 +176,12 @@ public class Grid implements Subject {
     }
 
     /**
-     * Gets grid.
-     *
-     * @return the grid
-     */
-    public View getGrid() {
-        return grid;
-    }
-
-    /**
-     * Sets grid.
-     *
-     * @param grid the grid
-     */
-    public void setGrid(View grid) {
-        this.grid = grid;
-    }
-
-    /**
      * Gets observers.
      *
      * @return the observers
      */
     public ArrayList<ScoreObserver> getObservers() {
         return observers;
-    }
-
-    /**
-     * Sets observers.
-     *
-     * @param observers the observers
-     */
-    public void setObservers(ArrayList<ScoreObserver> observers) {
-        this.observers = observers;
     }
 }
 
