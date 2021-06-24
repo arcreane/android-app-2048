@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.TextView;
 
 /**
@@ -59,7 +60,6 @@ public class Tile {
      */
     @SuppressLint("SetTextI18n")
     public void updateTileUi() {
-        // this.tile.setBackgroundColor(this.updateColorBackground());
         if (this.getValue() == 0) {
             this.getTile().setText("");
             this.getTile().setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C0B0A1")));
@@ -67,11 +67,10 @@ public class Tile {
             String s = String.valueOf(this.getValue());
             this.getTile().setText(Integer.toString(this.getValue()));
             float factor = Float.parseFloat("0." + s + "f");
-            System.out.println("COlLOR = " + factor);
-            //this.tile.getBackgroundTintList().
-            this.getTile().setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(this.getTile().getBackgroundTintList().getDefaultColor(), factor)));
+            this.getTile().setBackgroundTintList(ColorStateList.valueOf(this.darkenColor(Color.parseColor("#FF4A68"), factor)));
         }
     }
+    
 
     /**
      * Change value.
@@ -105,13 +104,9 @@ public class Tile {
     public int darkenColor(int color, float factor) {
 
         int a = Color.alpha(color);
-        int r = Math.round(Color.red(color) * factor);
-        int g = Math.round(Color.green(color) * factor);
-        int b = Math.round(Color.blue(color) * factor);
-        System.out.println("COLOR = " + Color.argb(a,
-                Math.min(r, 255),
-                Math.min(g, 255),
-                Math.min(b, 255)));
+        int r = Math.round(Color.red(color) / factor);
+        int g = Math.round(Color.green(color) / factor);
+        int b = Math.round(Color.blue(color) / factor);
         return Color.argb(a,
                 Math.min(r, 255),
                 Math.min(g, 255),
